@@ -2,6 +2,7 @@
     "name": "sfw2/validator",
     "type": "library",
     "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3",
+    "description": "simple validation library",
 
     "require": {
         "php": "^7.3"
