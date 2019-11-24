@@ -27,7 +27,7 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class IsNotEmpty extends ValidatorRule {
 
-    protected $trim;
+    protected bool $trim;
 
     public function __construct(bool $trim = true) {
         $this->trim = $trim;

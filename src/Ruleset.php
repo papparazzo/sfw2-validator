@@ -24,7 +24,7 @@ namespace SFW2\Validator;
 
 class Ruleset {
 
-    private $rules = [];
+    private array $rules = [];
 
     public function addNewRules(string $element, ValidatorRule ...$rules) : void {
         foreach ($rules as $rule) {

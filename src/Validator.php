@@ -26,7 +26,7 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class Validator {
 
-    protected $rulesets;
+    protected Ruleset $rulesets;
 
     public function __construct(Ruleset $ruleset) {
         $this->rulesets = $ruleset;

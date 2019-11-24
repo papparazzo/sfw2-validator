@@ -27,8 +27,8 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class HasMinLength extends ValidatorRule {
 
-    protected $min;
-    protected $trim;
+    protected int $min;
+    protected bool $trim;
 
     public function __construct(int $min, bool $trim = true) {
         $this->min = $min;

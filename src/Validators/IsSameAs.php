@@ -27,9 +27,9 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class IsSameAs extends ValidatorRule {
 
-    protected $trim;
+    protected string $value;
 
-    protected $value;
+    protected bool $trim;
 
     public function __construct(string $value, bool $trim = true) {
         $this->trim = $trim;

@@ -37,7 +37,7 @@ abstract class ValidatorRule {
 
     abstract public function validate(string $value) : string;
 
-    protected function replaceIn(string $key, $params = array()): string {
+    protected function replaceIn(string $key, $params = []): string {
         if (empty($params)) {
             return $key;
         }

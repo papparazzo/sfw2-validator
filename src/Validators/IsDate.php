@@ -36,10 +36,10 @@ class IsDate extends ValidatorRule {
     const PAST_DATE          = 6;
 
 
-    protected $operator;
-    protected $compareTo;
+    protected int $operator;
+    protected string $compareTo;
 
-    public function __construct($operator = self::NO_COMPARE, $compareTo = '') {
+    public function __construct(int $operator = self::NO_COMPARE, string $compareTo = '') {
         $this->operator = $operator;
         $this->compareTo = $compareTo;
     }
@@ -126,7 +126,7 @@ class IsDate extends ValidatorRule {
         return true;
     }
 
-    protected function formatDate($value) : string {
+    protected function formatDate(string $value) : string {
         $result = date("d.m.Y", strtotime($value));
         if($result === false) {
             throw new Exception("parsing of date <$value> failed!");

@@ -27,7 +27,7 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class IsOneOf extends ValidatorRule {
 
-    protected $elements = [];
+    protected array $elements = [];
 
     public function __construct(array $elements) {
         $this->elements = $elements;

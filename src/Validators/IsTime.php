@@ -34,10 +34,10 @@ class IsTime extends ValidatorRule {
     const GREATER_EQUAL_THAN = 3;
     const LESS_EQUAL_THAN    = 4;
 
-    protected $operator;
-    protected $compareTo;
+    protected int $operator;
+    protected string $compareTo;
 
-    public function __construct($operator = self::NO_COMPARE, $compareTo = '') {
+    public function __construct($operator = self::NO_COMPARE, string $compareTo = '') {
         $this->operator = $operator;
         $this->compareTo = $compareTo;
     }

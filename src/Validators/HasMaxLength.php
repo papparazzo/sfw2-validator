@@ -27,8 +27,8 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class HasMaxLength extends ValidatorRule {
 
-    protected $max;
-    protected $trim;
+    protected int $max;
+    protected bool $trim;
 
     public function __construct(int $max, bool $trim = true) {
         $this->max = $max;

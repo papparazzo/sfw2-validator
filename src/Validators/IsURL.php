@@ -28,12 +28,12 @@ use Exception;
 
 class IsURL extends ValidatorRule {
 
-    const NOT_SPECIFIED = 0;
-    const WITH_HTTPS = 1;
-    const WITH_HTTP = 2;
+    const NOT_SPECIFIED      = 0;
+    const WITH_HTTPS         = 1;
+    const WITH_HTTP          = 2;
     const WITH_HTTP_OR_HTTPS = self::WITH_HTTP | self::WITH_HTTPS;
 
-    protected $shema = 0;
+    protected int $shema = 0;
 
     public function __construct($shema = self::NOT_SPECIFIED) {
         $this->shema = $shema;
