@@ -42,7 +42,7 @@ abstract class ValidatorRule {
             return $key;
         }
 
-        $keys = array_map(function($n) {return '{' . $n . '}';}, array_keys($params));
+        $keys = array_map(fn($n) => '{' . $n . '}', array_keys($params));
         return str_replace($keys, $params, $key);
     }
 }
