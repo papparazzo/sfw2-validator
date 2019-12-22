@@ -26,7 +26,7 @@ use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
 use Exception;
 
-class IsURL extends ValidatorRule {
+class IsUrl extends ValidatorRule {
 
     const NOT_SPECIFIED      = 0;
     const WITH_HTTPS         = 1;
