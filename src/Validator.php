@@ -44,9 +44,9 @@ class Validator {
     }
 
     protected function validateElement(string $field, array $rulesets, array $input, array &$output) : bool {
-        if(!isset($input[$field])) {
-            $output[$field]['value'] = '';
-        } else {
+        $output[$field]['value'] = null;
+
+        if(isset($input[$field])) {
             $output[$field]['value'] = $input[$field];
         }
 
