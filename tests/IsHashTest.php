@@ -63,4 +63,9 @@ final class IsHashTest extends TestCase {
             ['5d41402abc4b2a76b9719d911017c592']
         ];
     }
+
+    public function testValidNull(): void {
+        $rule = new IsHash();
+        $this->assertEquals(null, $rule->validate(null));
+    }
 }
