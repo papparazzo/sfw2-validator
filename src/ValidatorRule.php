@@ -35,7 +35,7 @@ abstract class ValidatorRule {
     const REGEX_PHONE       = '#^\(?(\+|00|0)?[1-9]?[0-9 ]{1,9}(/|\))?[0-9 \-]+$#';
     const REGEX_EMAIL_ADDR  = '#^[a-zA-Z0-9._%\+\-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$#';
 
-    abstract public function validate(string $value) : string;
+    abstract public function validate(?string $value) : string;
 
     protected function replaceIn(string $key, $params = []): string {
         if (empty($params)) {

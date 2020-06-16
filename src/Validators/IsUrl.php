@@ -39,7 +39,7 @@ class IsUrl extends ValidatorRule {
         $this->shema = $shema;
     }
 
-    public function validate(string $value) : string {
+    public function validate(?string $value) : string {
         $value = trim($value);
         if($value == '') {
             return $value;

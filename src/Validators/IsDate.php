@@ -44,7 +44,7 @@ class IsDate extends ValidatorRule {
         $this->compareTo = $compareTo;
     }
 
-    public function validate(string $value) : string {
+    public function validate(?string $value) : string {
         if(!$this->checkDate($value)) {
             throw new ValidatorException('Der Inhalt ist kein gültiges Datum.');
         }

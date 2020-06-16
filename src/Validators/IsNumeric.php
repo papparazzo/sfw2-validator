@@ -27,7 +27,7 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class IsNumeric extends ValidatorRule {
 
-    public function validate(string $value) : string {
+    public function validate(?string $value) : string {
         $value = trim($value);
         if($value == '') {
             return $value;

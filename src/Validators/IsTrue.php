@@ -26,7 +26,7 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class IsTrue extends IsBool {
 
-    public function validate(string $value) : string {
+    public function validate(?string $value) : string {
         $value = parent::validate($value);
 
         if($value == '0') {

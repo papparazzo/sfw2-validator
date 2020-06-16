@@ -33,7 +33,7 @@ class IsNotEmpty extends ValidatorRule {
         $this->trim = $trim;
     }
 
-    public function validate(string $value) : string {
+    public function validate(?string $value) : string {
         if($this->trim) {
             $value = trim($value);
         }
