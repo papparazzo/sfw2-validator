@@ -42,6 +42,10 @@ class IsTime extends ValidatorRule {
         $this->compareTo = $compareTo;
     }
 
+    /**
+     * @throws \SFW2\Validator\Exception
+     * @throws \Exception
+     */
     public function validate(?string $value) : string {
         if(!$this->checkTime($value)) {
             throw new ValidatorException('Der Inhalt ist keine gültige Uhrzeit (hh:mm).');

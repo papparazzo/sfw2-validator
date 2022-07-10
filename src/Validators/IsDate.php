@@ -44,6 +44,10 @@ class IsDate extends ValidatorRule {
         $this->compareTo = $compareTo;
     }
 
+    /**
+     * @throws \SFW2\Validator\Exception
+     * @throws \Exception
+     */
     public function validate(?string $value) : string {
         if(!$this->checkDate($value)) {
             throw new ValidatorException('Der Inhalt ist kein gültiges Datum.');
@@ -126,6 +130,9 @@ class IsDate extends ValidatorRule {
         return true;
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function formatDate(string $value) : string {
         $result = date("d.m.Y", strtotime($value));
         if($result === false) {

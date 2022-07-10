@@ -36,6 +36,9 @@ class IsSameAs extends ValidatorRule {
         $this->value = $value;
     }
 
+    /**
+     * @throws \SFW2\Validator\Exception
+     */
     public function validate(?string $value) : string {
         if($this->trim) {
             $value = trim($value);

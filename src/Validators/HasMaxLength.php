@@ -35,6 +35,9 @@ class HasMaxLength extends ValidatorRule {
         $this->trim = $trim;
     }
 
+    /**
+     * @throws \SFW2\Validator\Exception
+     */
     public function validate(?string $value) : string {
         if($this->trim) {
             $value = trim($value);

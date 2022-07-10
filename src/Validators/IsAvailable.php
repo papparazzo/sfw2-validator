@@ -27,6 +27,9 @@ use SFW2\Validator\Exception as ValidatorException;
 
 class IsAvailable extends ValidatorRule {
 
+    /**
+     * @throws \SFW2\Validator\Exception
+     */
     public function validate(?string $value): string {
         if(is_null($value)) {
             throw new ValidatorException('Der Wert ist nicht verfügbar.');

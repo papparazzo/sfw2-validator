@@ -39,6 +39,10 @@ class IsUrl extends ValidatorRule {
         $this->shema = $shema;
     }
 
+    /**
+     * @throws \SFW2\Validator\Exception
+     * @throws \Exception
+     */
     public function validate(?string $value) : string {
         $value = trim($value);
         if($value == '') {
