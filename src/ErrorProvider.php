@@ -41,7 +41,7 @@ class ErrorProvider {
     const PHON_ONLY      = 'Der Inhalt darf nur aus Zahlen und \'+,-, ,(,),/\' bestehen.';
     const EXISTS         = 'Der Inhalt existiert bereits.';
     const NOT_EXISTS     = 'Der Inhalt existiert nicht.';
-    const INV_URL        = 'Die URL hat ein ungültiges Format (http://www.example.de).';
+    const INV_URL        = 'Die URL hat ein ungültiges Format (https://www.example.de).';
     const INV_EMAIL_ADDR = 'Der Inhalt ist keine gültige E-Mailadresse';
     const INV_HASH       = 'Der Inhalt ist kein gültiger Hash-Wert';
     const NO_FILES       = 'Es wurden keine gültigen Dateien ausgewählt.';
@@ -55,7 +55,7 @@ class ErrorProvider {
 
     const INVALID_VALUE  = 'Es wurde ein ungültiger Wert ausgewählt';
 
-    public function getErrorMessage(string $id, array $rp = []) : string {
+    public function getErrorMessage(string $id, array $rp = []): string {
         $keys = array_keys($rp);
         $vals = array_values($rp);
         return str_replace($keys, $vals, $id);

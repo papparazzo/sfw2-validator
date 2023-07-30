@@ -26,7 +26,7 @@ use SFW2\Validator\ValidatorRule;
 
 class IsBool extends ValidatorRule {
 
-    public function validate(?string $value) : string {
+    public function validate(?string $value): string {
         $value = trim($value);
 
         if($value == '' || $value == '0' || strtolower($value) == 'false') {

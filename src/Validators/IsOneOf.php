@@ -36,7 +36,7 @@ class IsOneOf extends ValidatorRule {
     /**
      * @throws \SFW2\Validator\Exception
      */
-    public function validate(?string $value) : string {
+    public function validate(?string $value): string {
         if(!in_array($value, $this->elements)) {
             throw new ValidatorException('Es wurde ein ungültiger Wert übergeben.');
         }

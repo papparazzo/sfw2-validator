@@ -24,9 +24,9 @@ namespace SFW2\Validator;
 
 abstract class ValidatorRule {
 
-    const REGEX_TEXT_SIMPLE = '#^[A-Za-zäÄöÖüÜß0-9]+$#';
-    const REGEX_FILE_NAME   = '#^[A-Za-zäÄöÖüÜß0-9._]+$#';
-    const REGEX_NAME        = '#^[A-Za-zäÄöÖüÜß0-9._\- ]+$#';
+    const REGEX_TEXT_SIMPLE = '#^[A-Za-z0-9]+$#';
+    const REGEX_FILE_NAME   = '#^[A-Za-z0-9._]+$#';
+    const REGEX_NAME        = '#^[A-Za-z0-9._\- ]+$#';
     const REGEX_ID          = '#^[A-Za-z0-9\-_]+$#';
     const REGEX_STRICT      = '#^[A-Za-z0-9]+$#';
     const REGEX_HASH        = '#^[A-Fa-f0-9]+$#';

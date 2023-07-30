@@ -26,13 +26,13 @@ class Ruleset {
 
     private array $rules = [];
 
-    public function addNewRules(string $element, ValidatorRule ...$rules) : void {
+    public function addNewRules(string $element, ValidatorRule ...$rules): void {
         foreach ($rules as $rule) {
             $this->rules[$element][] = $rule;
         }
     }
 
-    public function getRules() : array {
+    public function getRules(): array {
         return $this->rules;
     }
 }

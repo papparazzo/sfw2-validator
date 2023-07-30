@@ -32,7 +32,7 @@ class Validator {
         $this->rulesets = $ruleset;
     }
 
-    public function validate(array $input, array &$output) : bool {
+    public function validate(array $input, array &$output): bool {
         $hasErrors = false;
         $output = [];
         foreach($this->rulesets->getRules() as $field => $rulesets) {
@@ -43,7 +43,7 @@ class Validator {
         return !$hasErrors;
     }
 
-    protected function validateElement(string $field, array $rulesets, array $input, array &$output) : bool {
+    protected function validateElement(string $field, array $rulesets, array $input, array &$output): bool {
         $output[$field]['value'] = null;
 
         if(isset($input[$field])) {
