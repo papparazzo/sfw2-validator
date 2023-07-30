@@ -22,20 +22,15 @@
 
 namespace SFW2\Validator\Validators;
 
+use SFW2\Validator\Enumerations\ProtocolTypeEnum;
 use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
-use Exception;
 
 class IsUrl extends ValidatorRule {
 
-    const NOT_SPECIFIED      = 0;
-    const WITH_HTTPS         = 1;
-    const WITH_HTTP          = 2;
-    const WITH_HTTP_OR_HTTPS = self::WITH_HTTP | self::WITH_HTTPS;
+    protected ProtocolTypeEnum $shema;
 
-    protected int $shema = 0;
-
-    public function __construct($shema = self::NOT_SPECIFIED) {
+    public function __construct(ProtocolTypeEnum $shema = ProtocolTypeEnum::NOT_SPECIFIED) {
         $this->shema = $shema;
     }
 
@@ -54,30 +49,26 @@ class IsUrl extends ValidatorRule {
         }
 
         switch($this->shema) {
-            case self::NOT_SPECIFIED:
+            case ProtocolTypeEnum::NOT_SPECIFIED:
                 break;
 
-            case self::WITH_HTTP:
+            case ProtocolTypeEnum::WITH_HTTP:
                 if(!preg_match('#^(http)#', $value)) {
                     throw new ValidatorException('Die URL fängt nicht mit HTTP an.');
                 }
                 break;
 
-            case self::WITH_HTTPS:
+            case ProtocolTypeEnum::WITH_HTTPS:
                 if(!preg_match('#^(https)#', $value)) {
                     throw new ValidatorException('Die URL fängt nicht mit HTTPS an.');
                 }
                 break;
 
-            case self::WITH_HTTP_OR_HTTPS:
+            case ProtocolTypeEnum::WITH_HTTP_OR_HTTPS:
                 if(!preg_match('#^(http|https)#', $value)) {
                     throw new ValidatorException('Die URL fängt nicht mit HTTP(S) an.');
                 }
                 break;
-
-            default:
-                throw new Exception('invalid protocol given');
-
         }
         return $value;
     }

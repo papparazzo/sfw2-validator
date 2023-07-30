@@ -25,22 +25,14 @@ namespace SFW2\Validator\Validators;
 use Exception;
 use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\Enumerations\DateCompareEnum;
 
 class IsDate extends ValidatorRule {
 
-    const NO_COMPARE         = 0;
-    const GREATER_THAN       = 1;
-    const LESS_THAN          = 2;
-    const GREATER_EQUAL_THAN = 3;
-    const LESS_EQUAL_THAN    = 4;
-    const FUTURE_DATE        = 5;
-    const PAST_DATE          = 6;
-
-
-    protected int $operator;
+    protected DateCompareEnum $operator;
     protected string $compareTo;
 
-    public function __construct(int $operator = self::NO_COMPARE, string $compareTo = '') {
+    public function __construct(DateCompareEnum $operator = DateCompareEnum::NO_COMPARE, string $compareTo = '') {
         $this->operator = $operator;
         $this->compareTo = $compareTo;
     }
@@ -62,47 +54,44 @@ class IsDate extends ValidatorRule {
         }
 
         switch($this->operator) {
-            case self::NO_COMPARE:
+            case DateCompareEnum::NO_COMPARE:
                 break;
 
-            case self::GREATER_THAN:
+            case DateCompareEnum::GREATER_THAN:
                 if(strtotime($value) <= strtotime($this->compareTo) ) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss nach dem {DATE} liegen.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
-            case self::LESS_THAN:
+            case DateCompareEnum::LESS_THAN:
                 if(strtotime($value) > strtotime($this->compareTo) ) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss vor dem {DATE} liegen.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
-            case self::GREATER_EQUAL_THAN:
+            case DateCompareEnum::GREATER_EQUAL_THAN:
                 if(strtotime($value) < strtotime($this->compareTo) ) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss nach oder gleich dem {DATE} sein.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
-            case self::LESS_EQUAL_THAN:
+            case DateCompareEnum::LESS_EQUAL_THAN:
                 if(strtotime($value) >= strtotime($this->compareTo) ) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss vor oder gleich dem {DATE} sein.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
-            case self::FUTURE_DATE:
+            case DateCompareEnum::FUTURE_DATE:
                 if(strtotime($value) < time()) {
                     throw new ValidatorException('Das Datum muss in der Zukunft liegen.');
                 }
                 break;
 
-            case self::PAST_DATE:
+            case DateCompareEnum::PAST_DATE:
                 if(strtotime($value) > time()) {
                     throw new ValidatorException('Das Datum muss in der Vergangenheit liegen.');
                 }
                 break;
-
-            default:
-                throw new Exception('invalid operator given');
         }
         return $value;
     }
