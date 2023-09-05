@@ -36,7 +36,7 @@ class HasMinLength extends ValidatorRule {
     }
 
     /**
-     * @throws \SFW2\Validator\Exception
+     * @throws ValidatorException
      */
     public function validate(?string $value): string {
         if($this->trim) {

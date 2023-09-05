@@ -34,7 +34,7 @@ class IsOneOf extends ValidatorRule {
     }
 
     /**
-     * @throws \SFW2\Validator\Exception
+     * @throws ValidatorException
      */
     public function validate(?string $value): string {
         if(!in_array($value, $this->elements)) {

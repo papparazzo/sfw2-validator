@@ -35,7 +35,7 @@ class IsUrl extends ValidatorRule {
     }
 
     /**
-     * @throws \SFW2\Validator\Exception
+     * @throws ValidatorException
      * @throws \Exception
      */
     public function validate(?string $value) : string {
