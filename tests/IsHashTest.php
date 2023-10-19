@@ -37,7 +37,7 @@ final class IsHashTest extends TestCase {
     }
 
 
-    public function getInvalidHashes() : array {
+    public static function getInvalidHashes(): array {
         return [
             ['<'],
             ['zu'],
@@ -54,7 +54,7 @@ final class IsHashTest extends TestCase {
         $this->assertEquals($value, $rule->validate($value));
     }
 
-    public function getValidHashes() : array {
+    public static function getValidHashes(): array {
         return [
             ['1'],
             ['abcdef'],

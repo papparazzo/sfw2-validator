@@ -37,7 +37,7 @@ final class IsEMailAddressTest extends TestCase {
     }
 
 
-    public function getInvalidEmailAddresses() : array {
+    public static function getInvalidEmailAddresses(): array {
         return [
             ['abc'],
             ['abc@aasdf@asdf']
@@ -52,7 +52,7 @@ final class IsEMailAddressTest extends TestCase {
         $this->assertEquals(trim($value), $rule->validate($value));
     }
 
-    public function getValidEmailAddresses() : array {
+    public static function getValidEmailAddresses(): array {
         return [
             ['a@bc.de'],
             [' a@bc.de'],

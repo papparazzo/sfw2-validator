@@ -34,7 +34,7 @@ final class IsBoolTest extends TestCase {
         $this->assertEquals('0', $rule->validate($value));
     }
 
-    public function getFalse() : array {
+    public static function getFalse(): array {
         return [
             [''],
             [' '],
@@ -70,7 +70,7 @@ final class IsBoolTest extends TestCase {
         $this->assertEquals('1', $rule->validate($value));
     }
 
-    public function getTrue() : array {
+    public static function getTrue(): array {
         return [
             ['a'],
             ['1'],
