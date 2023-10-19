@@ -22,6 +22,7 @@
 
 namespace SFW2\Validator\Validators;
 
+use Exception;
 use SFW2\Validator\Enumerations\ProtocolTypeEnum;
 use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
@@ -36,7 +37,7 @@ class IsUrl extends ValidatorRule {
 
     /**
      * @throws ValidatorException
-     * @throws \Exception
+     * @throws Exception
      */
     public function validate(?string $value) : string {
         $value = trim($value);
