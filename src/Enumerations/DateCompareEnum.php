@@ -28,7 +28,6 @@ enum DateCompareEnum {
     case LESS_THAN;
     case GREATER_EQUAL_THAN;
     case LESS_EQUAL_THAN;
-
     case FUTURE_DATE;
     case PAST_DATE;
 }
