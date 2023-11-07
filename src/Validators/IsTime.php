@@ -23,11 +23,14 @@
 namespace SFW2\Validator\Validators;
 
 use SFW2\Validator\Enumerations\CompareEnum;
-use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
 use Exception;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsTime extends ValidatorRule {
+class IsTime extends ValidatorRuleNotNullable
+{
+
+    protected const REGEX_TIME = '#^[0-2]?[0-9]:[0-5]?[0-9]$#';
 
     protected CompareEnum $operator;
     protected string $compareTo;
@@ -41,7 +44,7 @@ class IsTime extends ValidatorRule {
      * @throws ValidatorException
      * @throws \Exception
      */
-    public function validate(?string $value) : string {
+    public function validate(string $value) : string {
         if(!$this->checkTime($value)) {
             throw new ValidatorException('Der Inhalt ist keine gültige Uhrzeit (hh:mm).');
         }

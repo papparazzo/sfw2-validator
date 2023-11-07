@@ -24,18 +24,7 @@ namespace SFW2\Validator;
 
 abstract class ValidatorRule {
 
-    const REGEX_TEXT_SIMPLE = '#^[A-Za-z0-9]+$#';
-    const REGEX_FILE_NAME   = '#^[A-Za-z0-9._]+$#';
-    const REGEX_NAME        = '#^[A-Za-z0-9._\- ]+$#';
-    const REGEX_ID          = '#^[A-Za-z0-9\-_]+$#';
-    const REGEX_STRICT      = '#^[A-Za-z0-9]+$#';
-    const REGEX_HASH        = '#^[A-Fa-f0-9]+$#';
-    const REGEX_NUMERIC     = '#^[0-9\-]+$#';
-    const REGEX_TIME        = '#^[0-2]?[0-9]:[0-5]?[0-9]$#';
-    const REGEX_PHONE       = '#^\(?(\+|00|0)?[1-9]?[0-9 ]{1,9}(/|\))?[0-9 \-]+$#';
-    const REGEX_EMAIL_ADDR  = '#^[a-zA-Z0-9._%\+\-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$#';
-
-    abstract public function validate(?string $value) : string;
+    abstract public function validateNullable(?string $value): string;
 
     protected function replaceIn(string $key, $params = []): string {
         if (empty($params)) {

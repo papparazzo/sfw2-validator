@@ -22,11 +22,12 @@
 
 namespace SFW2\Validator\Validators;
 
-use SFW2\Validator\ValidatorRule;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsBool extends ValidatorRule {
+class IsBool extends ValidatorRuleNotNullable
+{
 
-    public function validate(?string $value): string {
+    public function validate(string $value): string {
         $value = trim($value);
 
         if($value == '' || $value == '0' || strtolower($value) == 'false') {

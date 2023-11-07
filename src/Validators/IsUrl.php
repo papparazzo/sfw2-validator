@@ -24,10 +24,10 @@ namespace SFW2\Validator\Validators;
 
 use Exception;
 use SFW2\Validator\Enumerations\ProtocolTypeEnum;
-use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsUrl extends ValidatorRule {
+class IsUrl extends ValidatorRuleNotNullable {
 
     protected ProtocolTypeEnum $shema;
 
@@ -39,7 +39,7 @@ class IsUrl extends ValidatorRule {
      * @throws ValidatorException
      * @throws Exception
      */
-    public function validate(?string $value) : string {
+    public function validate(string $value) : string {
         $value = trim($value);
         if($value == '') {
             return $value;

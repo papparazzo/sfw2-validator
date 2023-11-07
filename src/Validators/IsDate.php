@@ -23,11 +23,11 @@
 namespace SFW2\Validator\Validators;
 
 use Exception;
-use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\Enumerations\DateCompareEnum;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsDate extends ValidatorRule {
+class IsDate extends ValidatorRuleNotNullable {
 
     protected DateCompareEnum $operator;
     protected string $compareTo;
@@ -41,7 +41,7 @@ class IsDate extends ValidatorRule {
      * @throws ValidatorException
      * @throws \Exception
      */
-    public function validate(?string $value) : string {
+    public function validate(string $value) : string {
         if(!$this->checkDate($value)) {
             throw new ValidatorException('Der Inhalt ist kein gültiges Datum.');
         }

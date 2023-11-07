@@ -22,10 +22,12 @@
 
 namespace SFW2\Validator\Validators;
 
-use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsNumeric extends ValidatorRule {
+class IsNumeric extends ValidatorRuleNotNullable
+{
+    protected const REGEX_NUMERIC = '#^[0-9\-]+$#';
 
     /**
      * @throws ValidatorException
@@ -33,10 +35,10 @@ class IsNumeric extends ValidatorRule {
     public function validate(string $value): string
     {
         $value = trim($value);
-        if($value == '') {
+        if ($value == '') {
             return $value;
         }
-        if(!preg_match(self::REGEX_NUMERIC, $value)) {
+        if (!preg_match(self::REGEX_NUMERIC, $value)) {
             throw new ValidatorException('Der Inhalt muss numerisch sein.');
         }
         return $value;

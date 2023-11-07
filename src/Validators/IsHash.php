@@ -22,15 +22,17 @@
 
 namespace SFW2\Validator\Validators;
 
-use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsHash extends ValidatorRule {
+class IsHash extends ValidatorRuleNotNullable {
+
+    public const REGEX_HASH = '#^[A-Fa-f0-9]+$#';
 
     /**
      * @throws ValidatorException
      */
-    public function validate(?string $value): string {
+    public function validate(string $value): string {
         $value = trim($value);
         if($value == '') {
             return $value;

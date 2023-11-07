@@ -29,7 +29,7 @@ class IsTrue extends IsBool {
     /**
      * @throws ValidatorException
      */
-    public function validate(?string $value): string {
+    public function validate(string $value): string {
         $value = parent::validate($value);
 
         if($value == '0') {
