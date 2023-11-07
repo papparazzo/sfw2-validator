@@ -20,9 +20,11 @@
  *
  */
 
+namespace SFW2\Validator\Test;
+
 use PHPUnit\Framework\TestCase;
-use SFW2\Validator\Validators\IsEMailAddress;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\Validators\IsEMailAddress;
 
 final class IsEMailAddressTest extends TestCase
 {
