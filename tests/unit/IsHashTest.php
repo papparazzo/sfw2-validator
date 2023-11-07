@@ -20,16 +20,20 @@
  *
  */
 
-use PHPUnit\Framework\TestCase;
-use SFW2\Validator\Validators\IsHash;
-use SFW2\Validator\Exception as ValidatorException;
+namespace SFW2\Validator\Test;
 
-final class IsHashTest extends TestCase {
+use PHPUnit\Framework\TestCase;
+use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\Validators\IsHash;
+
+final class IsHashTest extends TestCase
+{
 
     /**
      * @dataProvider getInvalidHashes
      */
-    public function testInvalidHash(string $value): void {
+    public function testInvalidHash(string $value): void
+    {
         $this->expectException(ValidatorException::class);
 
         $rule = new IsHash();
@@ -37,7 +41,8 @@ final class IsHashTest extends TestCase {
     }
 
 
-    public static function getInvalidHashes(): array {
+    public static function getInvalidHashes(): array
+    {
         return [
             ['<'],
             ['zu'],
@@ -49,12 +54,14 @@ final class IsHashTest extends TestCase {
     /**
      * @dataProvider getValidHashes
      */
-    public function testValidHash(string $value): void {
+    public function testValidHash(string $value): void
+    {
         $rule = new IsHash();
         $this->assertEquals($value, $rule->validate($value));
     }
 
-    public static function getValidHashes(): array {
+    public static function getValidHashes(): array
+    {
         return [
             ['1'],
             ['abcdef'],
@@ -64,7 +71,8 @@ final class IsHashTest extends TestCase {
         ];
     }
 
-    public function testValidNull(): void {
+    public function testValidNull(): void
+    {
         $rule = new IsHash();
         $this->assertEquals(null, $rule->validate(null));
     }

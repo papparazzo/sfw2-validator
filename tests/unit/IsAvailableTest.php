@@ -20,20 +20,25 @@
  *
  */
 
+namespace SFW2\Validator\Test;
+
 use PHPUnit\Framework\TestCase;
-use SFW2\Validator\Validators\IsAvailable;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\Validators\IsAvailable;
 
-final class IsAvailableTest extends TestCase {
+final class IsAvailableTest extends TestCase
+{
 
-    public function testValidateNullValue(): void {
+    public function testValidateNullValue(): void
+    {
         $this->expectException(ValidatorException::class);
 
         $rule = new IsAvailable();
         $rule->validate(null);
     }
 
-    public function testValidateNonNullValues(): void {
+    public function testValidateNonNullValues(): void
+    {
         $rule = new IsAvailable();
         $this->assertEquals('', $rule->validate(''));
         $this->assertEquals(' Hal.o ', $rule->validate(' Hal.o '));

@@ -21,32 +21,39 @@
  */
 
 
+namespace SFW2\Validator\Test;
+
 use PHPUnit\Framework\TestCase;
-use SFW2\Validator\Validators\IsOneOf;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\Validators\IsOneOf;
 
-final class IsOneOfTest extends TestCase {
+final class IsOneOfTest extends TestCase
+{
 
-    public function testValidateEmpty(): void {
+    public function testValidateEmpty(): void
+    {
         $this->expectException(ValidatorException::class);
 
         $rule = new IsOneOf([]);
         $rule->validate('Hallo');
     }
 
-    public function testValidateNotExist(): void {
+    public function testValidateNotExist(): void
+    {
         $this->expectException(ValidatorException::class);
 
         $rule = new IsOneOf(['a', 'b', 'c']);
         $rule->validate('d');
     }
 
-    public function testValidateRightValue(): void {
+    public function testValidateRightValue(): void
+    {
         $rule = new IsOneOf(['a', 'b', 'c']);
         $this->assertEquals('a', $rule->validate('a'));
     }
 
-    public function testValidateRightValue1(): void {
+    public function testValidateRightValue1(): void
+    {
         $rule = new IsOneOf(['a', '', 'c']);
         $this->assertEquals('', $rule->validate(''));
     }

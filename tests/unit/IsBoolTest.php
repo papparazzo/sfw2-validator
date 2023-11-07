@@ -20,21 +20,25 @@
  *
  */
 
+namespace SFW2\Validator\Test;
+
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Validators\IsBool;
-use SFW2\Validator\Exception as ValidatorException;
 
-final class IsBoolTest extends TestCase {
+final class IsBoolTest extends TestCase
+{
 
     /**
      * @dataProvider getFalse
      */
-    public function testFalse(string $value): void {
+    public function testFalse(string $value): void
+    {
         $rule = new IsBool();
         $this->assertEquals('0', $rule->validate($value));
     }
 
-    public static function getFalse(): array {
+    public static function getFalse(): array
+    {
         return [
             [''],
             [' '],
@@ -65,12 +69,14 @@ final class IsBoolTest extends TestCase {
     /**
      * @dataProvider getTrue
      */
-    public function testTrue(string $value): void {
+    public function testTrue(string $value): void
+    {
         $rule = new IsBool();
         $this->assertEquals('1', $rule->validate($value));
     }
 
-    public static function getTrue(): array {
+    public static function getTrue(): array
+    {
         return [
             ['a'],
             ['1'],
@@ -81,7 +87,8 @@ final class IsBoolTest extends TestCase {
         ];
     }
 
-    public function testValidateNullValue(): void {
+    public function testValidateNullValue(): void
+    {
         $rule = new IsBool();
         $this->assertEquals('0', $rule->validate(null));
     }
