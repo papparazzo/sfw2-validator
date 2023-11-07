@@ -14,6 +14,11 @@
             "SFW2\\Validator\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SFW2\\Validator\\Test\\": "tests/unit/"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "^10",
         "phpstan/phpstan": "^1.10"

@@ -30,7 +30,8 @@ class IsNumeric extends ValidatorRule {
     /**
      * @throws ValidatorException
      */
-    public function validate(?string $value): string {
+    public function validate(string $value): string
+    {
         $value = trim($value);
         if($value == '') {
             return $value;
