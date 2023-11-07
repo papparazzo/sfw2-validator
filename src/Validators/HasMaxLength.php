@@ -22,10 +22,10 @@
 
 namespace SFW2\Validator\Validators;
 
-use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
-class HasMaxLength extends ValidatorRule {
+class HasMaxLength extends ValidatorRuleNotNullable {
 
     protected int $max;
     protected bool $trim;
@@ -38,7 +38,7 @@ class HasMaxLength extends ValidatorRule {
     /**
      * @throws ValidatorException
      */
-    public function validate(?string $value): string {
+    public function validate(string $value): string {
         if($this->trim) {
             $value = trim($value);
         }
