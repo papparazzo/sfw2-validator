@@ -53,7 +53,7 @@ class Validator {
         try {
             foreach($rulesets as $ruleset) {
                 $output[$field]['hint'] = '';
-                $output[$field]['value'] = $ruleset->validate($output[$field]['value']);
+                $output[$field]['value'] = $ruleset->validateNullable($output[$field]['value']);
             }
         } catch(ValidatorException $ex) {
             $output[$field]['hint'] = $ex->getMessage();
