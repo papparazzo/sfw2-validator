@@ -20,6 +20,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace SFW2\Validator\Validators;
 
 use SFW2\Validator\ValidatorRuleNotNullable;
