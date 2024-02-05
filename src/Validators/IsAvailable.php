@@ -27,13 +27,15 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsAvailable extends ValidatorRuleNotNullable {
+final class IsAvailable extends ValidatorRuleNotNullable
+{
 
     /**
      * @throws ValidatorException
      */
-    public function validate(?string $value): string {
-        if(is_null($value)) {
+    public function validate(?string $value): string
+    {
+        if (is_null($value)) {
             throw new ValidatorException('Der Wert ist nicht verfügbar.');
         }
         return $value;

@@ -27,26 +27,26 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class HasMinLength extends ValidatorRuleNotNullable {
-
-    protected int $min;
-    protected bool $trim;
-
-    public function __construct(int $min, bool $trim = true) {
-        $this->min = $min;
-        $this->trim = $trim;
+final class HasMinLength extends ValidatorRuleNotNullable
+{
+    public function __construct(
+        private readonly int $min,
+        private readonly bool $trim = true
+    )
+    {
     }
 
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
-        if($this->trim) {
+    public function validate(string $value): string
+    {
+        if ($this->trim) {
             $value = trim($value);
         }
 
-        if(mb_strlen($value) < $this->min) {
-            throw new ValidatorException($this->replaceIn("Der Inhalt darf nicht kürzer als {MIN} Zeichen sein.", ['MIN' => $this->min]));
+        if (mb_strlen($value) < $this->min) {
+            throw new ValidatorException($this->replaceIn("Der Inhalt muss mindestens {MIN} Zeichen lang sein.", ['MIN' => $this->min]));
         }
         return $value;
     }

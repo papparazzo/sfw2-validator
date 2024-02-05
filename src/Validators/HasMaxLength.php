@@ -27,25 +27,25 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class HasMaxLength extends ValidatorRuleNotNullable {
-
-    protected int $max;
-    protected bool $trim;
-
-    public function __construct(int $max, bool $trim = true) {
-        $this->max = $max;
-        $this->trim = $trim;
+final class HasMaxLength extends ValidatorRuleNotNullable
+{
+    public function __construct(
+        private readonly int $max,
+        private readonly bool $trim = true
+    )
+    {
     }
 
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
-        if($this->trim) {
+    public function validate(string $value): string
+    {
+        if ($this->trim) {
             $value = trim($value);
         }
 
-        if(mb_strlen($value) > $this->max) {
+        if (mb_strlen($value) > $this->max) {
             throw new ValidatorException($this->replaceIn("Der Inhalt darf nicht länger als {MAX} Zeichen sein.", ['MAX' => $this->max]));
         }
         return $value;
