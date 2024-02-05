@@ -26,15 +26,16 @@ namespace SFW2\Validator\Validators;
 
 use SFW2\Validator\Exception as ValidatorException;
 
-class IsTrue extends IsBool {
-
+final class IsTrue extends IsBool
+{
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
+    public function validate(string $value): string
+    {
         $value = parent::validate($value);
 
-        if($value == '0') {
+        if ($value == '0') {
             throw new ValidatorException('Der Haken muss gesetzt sein.');
         }
         return $value;

@@ -27,23 +27,24 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsNotEmpty extends ValidatorRuleNotNullable {
-
-    protected bool $trim;
-
-    public function __construct(bool $trim = true) {
-        $this->trim = $trim;
+final class IsNotEmpty extends ValidatorRuleNotNullable
+{
+    public function __construct(
+        private readonly bool $trim = true
+    )
+    {
     }
 
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
-        if($this->trim) {
+    public function validate(string $value): string
+    {
+        if ($this->trim) {
             $value = trim($value);
         }
 
-        if($value == '') {
+        if ($value == '') {
             throw new ValidatorException('Der Inhalt darf nicht leer sein.');
         }
         return $value;

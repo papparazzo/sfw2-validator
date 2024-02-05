@@ -27,19 +27,21 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsHash extends ValidatorRuleNotNullable {
+final class IsHash extends ValidatorRuleNotNullable
+{
 
     public const REGEX_HASH = '#^[A-Fa-f0-9]+$#';
 
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
+    public function validate(string $value): string
+    {
         $value = trim($value);
-        if($value == '') {
+        if ($value == '') {
             return $value;
         }
-        if(!preg_match(self::REGEX_HASH, $value)) {
+        if (!preg_match(self::REGEX_HASH, $value)) {
             throw new ValidatorException('Der Inhalt ist kein gültiger Hash-Wert.');
         }
         return $value;
