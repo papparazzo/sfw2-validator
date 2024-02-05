@@ -37,11 +37,14 @@ final class IsAvailableTest extends TestCase
         $rule->validate(null);
     }
 
+    /**
+     * @throws ValidatorException
+     */
     public function testValidateNonNullValues(): void
     {
         $rule = new IsAvailable();
-        $this->assertEquals('', $rule->validate(''));
-        $this->assertEquals(' Hal.o ', $rule->validate(' Hal.o '));
+        self::assertEquals('', $rule->validate(''));
+        self::assertEquals(' Hal.o ', $rule->validate(' Hal.o '));
     }
 
 }

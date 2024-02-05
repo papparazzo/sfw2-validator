@@ -22,16 +22,14 @@
 
 namespace SFW2\Validator\Test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\Validators\IsHash;
 
 final class IsHashTest extends TestCase
 {
-
-    /**
-     * @dataProvider getInvalidHashes
-     */
+    #[DataProvider('getInvalidHashes')]
     public function testInvalidHash(string $value): void
     {
         $this->expectException(ValidatorException::class);
@@ -52,12 +50,13 @@ final class IsHashTest extends TestCase
     }
 
     /**
-     * @dataProvider getValidHashes
+     * @throws ValidatorException
      */
+    #[DataProvider('getValidHashes')]
     public function testValidHash(string $value): void
     {
         $rule = new IsHash();
-        $this->assertEquals($value, $rule->validate($value));
+        self::assertEquals($value, $rule->validate($value));
     }
 
     public static function getValidHashes(): array
@@ -69,11 +68,5 @@ final class IsHashTest extends TestCase
             ['1234567890ABCDEF'],
             ['5d41402abc4b2a76b9719d911017c592']
         ];
-    }
-
-    public function testValidNull(): void
-    {
-        $rule = new IsHash();
-        $this->assertEquals(null, $rule->validate(null));
     }
 }

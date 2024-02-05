@@ -46,15 +46,21 @@ final class IsOneOfTest extends TestCase
         $rule->validate('d');
     }
 
+    /**
+     * @throws ValidatorException
+     */
     public function testValidateRightValue(): void
     {
         $rule = new IsOneOf(['a', 'b', 'c']);
-        $this->assertEquals('a', $rule->validate('a'));
+        self::assertEquals('a', $rule->validate('a'));
     }
 
+    /**
+     * @throws ValidatorException
+     */
     public function testValidateRightValue1(): void
     {
         $rule = new IsOneOf(['a', '', 'c']);
-        $this->assertEquals('', $rule->validate(''));
+        self::assertEquals('', $rule->validate(''));
     }
 }

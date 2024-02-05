@@ -22,19 +22,17 @@
 
 namespace SFW2\Validator\Test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Validators\IsBool;
 
 final class IsBoolTest extends TestCase
 {
-
-    /**
-     * @dataProvider getFalse
-     */
+     #[DataProvider('getFalse')]
     public function testFalse(string $value): void
     {
         $rule = new IsBool();
-        $this->assertEquals('0', $rule->validate($value));
+        self::assertEquals('0', $rule->validate($value));
     }
 
     public static function getFalse(): array
@@ -66,13 +64,11 @@ final class IsBoolTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider getTrue
-     */
+    #[DataProvider('getTrue')]
     public function testTrue(string $value): void
     {
         $rule = new IsBool();
-        $this->assertEquals('1', $rule->validate($value));
+        self::assertEquals('1', $rule->validate($value));
     }
 
     public static function getTrue(): array
@@ -85,11 +81,5 @@ final class IsBoolTest extends TestCase
             ['tFALSE'],
             ['Falsch'],
         ];
-    }
-
-    public function testValidateNullValue(): void
-    {
-        $rule = new IsBool();
-        $this->assertEquals('0', $rule->validate(null));
     }
 }

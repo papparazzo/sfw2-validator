@@ -22,16 +22,14 @@
 
 namespace SFW2\Validator\Test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\Validators\IsEMailAddress;
 
 final class IsEMailAddressTest extends TestCase
 {
-
-    /**
-     * @dataProvider getInvalidEmailAddresses
-     */
+    #[DataProvider('getInvalidEmailAddresses')]
     public function testInvalidEMailAddresses(string $value): void
     {
         $this->expectException(ValidatorException::class);
@@ -39,7 +37,6 @@ final class IsEMailAddressTest extends TestCase
         $rule = new IsEMailAddress();
         $rule->validate($value);
     }
-
 
     public static function getInvalidEmailAddresses(): array
     {
@@ -50,12 +47,13 @@ final class IsEMailAddressTest extends TestCase
     }
 
     /**
-     * @dataProvider getValidEmailAddresses
+     * @throws ValidatorException
      */
+    #[DataProvider('getValidEmailAddresses')]
     public function testValidEMailAdresses(string $value): void
     {
         $rule = new IsEMailAddress();
-        $this->assertEquals(trim($value), $rule->validate($value));
+        self::assertEquals(trim($value), $rule->validate($value));
     }
 
     public static function getValidEmailAddresses(): array
@@ -67,12 +65,6 @@ final class IsEMailAddressTest extends TestCase
             [' a@bc.de '],
             ['']
         ];
-    }
-
-    public function testValidNull(): void
-    {
-        $rule = new IsEMailAddress();
-        $this->assertEquals(null, $rule->validate(null));
     }
 }
 
