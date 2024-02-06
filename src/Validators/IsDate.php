@@ -43,54 +43,55 @@ class IsDate extends ValidatorRuleNotNullable {
      * @throws ValidatorException
      * @throws \Exception
      */
-    public function validate(string $value) : string {
-        if(!$this->checkDate($value)) {
+    public function validate(string $value): string
+    {
+        if (!$this->checkDate($value)) {
             throw new ValidatorException('Der Inhalt ist kein gültiges Datum.');
         }
-        if(!$this->checkDate($this->compareTo)) {
+        if (!$this->checkDate($this->compareTo)) {
             throw new Exception('comparator time is invalid');
         }
 
-        if($value == '') {
+        if ($value == '') {
             return $value;
         }
 
-        switch($this->operator) {
+        switch ($this->operator) {
             case DateCompareEnum::NO_COMPARE:
                 break;
 
             case DateCompareEnum::GREATER_THAN:
-                if(strtotime($value) <= strtotime($this->compareTo) ) {
+                if (strtotime($value) <= strtotime($this->compareTo)) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss nach dem {DATE} liegen.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
             case DateCompareEnum::LESS_THAN:
-                if(strtotime($value) > strtotime($this->compareTo) ) {
+                if (strtotime($value) > strtotime($this->compareTo)) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss vor dem {DATE} liegen.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
             case DateCompareEnum::GREATER_EQUAL_THAN:
-                if(strtotime($value) < strtotime($this->compareTo) ) {
+                if (strtotime($value) < strtotime($this->compareTo)) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss nach oder gleich dem {DATE} sein.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
             case DateCompareEnum::LESS_EQUAL_THAN:
-                if(strtotime($value) >= strtotime($this->compareTo) ) {
+                if (strtotime($value) >= strtotime($this->compareTo)) {
                     throw new ValidatorException($this->replaceIn('Das Datum muss vor oder gleich dem {DATE} sein.', ['DATE' => $this->formatDate($this->compareTo)]));
                 }
                 break;
 
             case DateCompareEnum::FUTURE_DATE:
-                if(strtotime($value) < time()) {
+                if (strtotime($value) < time()) {
                     throw new ValidatorException('Das Datum muss in der Zukunft liegen.');
                 }
                 break;
 
             case DateCompareEnum::PAST_DATE:
-                if(strtotime($value) > time()) {
+                if (strtotime($value) > time()) {
                     throw new ValidatorException('Das Datum muss in der Vergangenheit liegen.');
                 }
                 break;
@@ -98,23 +99,20 @@ class IsDate extends ValidatorRuleNotNullable {
         return $value;
     }
 
-    protected function checkDate(string &$value) : bool {
+    protected function checkDate(string &$value): bool
+    {
         $value = trim($value);
-        if($value == '') {
+        if ($value == '') {
             return true;
         }
 
         $result = date_parse($value);
 
-        if($result === false) {
-            return false;
-        }
-
-        if($result['month'] < 10) {
+        if ($result['month'] < 10) {
             $result['month'] = '0' . $result['month'];
         }
 
-        if($result['day'] < 10) {
+        if ($result['day'] < 10) {
             $result['day'] = '0' . $result['day'];
         }
 
@@ -125,11 +123,8 @@ class IsDate extends ValidatorRuleNotNullable {
     /**
      * @throws \Exception
      */
-    protected function formatDate(string $value) : string {
-        $result = date("d.m.Y", strtotime($value));
-        if($result === false) {
-            throw new Exception("parsing of date <$value> failed!");
-        }
-        return $result;
+    protected function formatDate(string $value): string
+    {
+        return date("d.m.Y", strtotime($value));
     }
 }

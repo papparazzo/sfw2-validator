@@ -33,13 +33,14 @@ class IsEMailAddress extends ValidatorRuleNotNullable {
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
+    public function validate(string $value): string
+    {
         $value = trim($value);
-        if($value == '') {
+        if ($value == '') {
             return $value;
         }
 
-        if(!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
             throw new ValidatorException('Der Inhalt ist keine gültige E-Mailadresse');
         }
         return $value;
