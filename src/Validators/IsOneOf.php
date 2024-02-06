@@ -38,8 +38,9 @@ class IsOneOf extends ValidatorRuleNotNullable {
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
-        if(!in_array($value, $this->elements)) {
+    public function validate(string $value): string
+    {
+        if (!in_array($value, $this->elements)) {
             throw new ValidatorException('Es wurde ein ungültiger Wert übergeben.');
         }
         return $value;

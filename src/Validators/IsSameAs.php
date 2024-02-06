@@ -42,12 +42,13 @@ class IsSameAs extends ValidatorRuleNotNullable
     /**
      * @throws ValidatorException
      */
-    public function validate(string $value): string {
-        if($this->trim) {
+    public function validate(string $value): string
+    {
+        if ($this->trim) {
             $value = trim($value);
         }
 
-        if($value != $this->value) {
+        if ($value != $this->value) {
             throw new ValidatorException('Die Felder stimmen nicht überein.');
         }
         return $value;

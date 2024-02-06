@@ -29,7 +29,7 @@ use SFW2\Validator\ValidatorRuleNotNullable;
 
 class IsPhoneNumber extends ValidatorRuleNotNullable
 {
-    protected const REGEX_PHONE = '#^\(?(\+|00|0)?[1-9]?[0-9 ]{1,9}(/|\))?[0-9 \-]+$#';
+    protected const REGEX_PHONE = '#^\(?(\+|00|0)?[1-9]?[0-9 ]{1,9}([/)])?[0-9 \-]+$#';
 
     /**
      * @throws ValidatorException
@@ -44,6 +44,5 @@ class IsPhoneNumber extends ValidatorRuleNotNullable
             throw new ValidatorException('Der Inhalt ist keine gültige Telefonnummer.');
         }
         return $value;
-
     }
 }
