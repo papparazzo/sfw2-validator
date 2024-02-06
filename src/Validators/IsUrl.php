@@ -41,34 +41,35 @@ class IsUrl extends ValidatorRuleNotNullable {
      * @throws ValidatorException
      * @throws Exception
      */
-    public function validate(string $value) : string {
+    public function validate(string $value): string
+    {
         $value = trim($value);
-        if($value == '') {
+        if ($value == '') {
             return $value;
         }
 
-        if(filter_var($value, FILTER_VALIDATE_URL) === false) {
+        if (filter_var($value, FILTER_VALIDATE_URL) === false) {
             throw new ValidatorException('Der Inhalt ist keine gültige URL.');
         }
 
-        switch($this->shema) {
+        switch ($this->shema) {
             case ProtocolTypeEnum::NOT_SPECIFIED:
                 break;
 
             case ProtocolTypeEnum::WITH_HTTP:
-                if(!preg_match('#^(http)#', $value)) {
+                if (!preg_match('#^(http)#', $value)) {
                     throw new ValidatorException('Die URL fängt nicht mit HTTP an.');
                 }
                 break;
 
             case ProtocolTypeEnum::WITH_HTTPS:
-                if(!preg_match('#^(https)#', $value)) {
+                if (!preg_match('#^(https)#', $value)) {
                     throw new ValidatorException('Die URL fängt nicht mit HTTPS an.');
                 }
                 break;
 
             case ProtocolTypeEnum::WITH_HTTP_OR_HTTPS:
-                if(!preg_match('#^(http|https)#', $value)) {
+                if (!preg_match('#^(http|https)#', $value)) {
                     throw new ValidatorException('Die URL fängt nicht mit HTTP(S) an.');
                 }
                 break;

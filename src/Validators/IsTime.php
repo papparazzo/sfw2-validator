@@ -46,42 +46,43 @@ class IsTime extends ValidatorRuleNotNullable
      * @throws ValidatorException
      * @throws \Exception
      */
-    public function validate(string $value) : string {
-        if(!$this->checkTime($value)) {
+    public function validate(string $value): string
+    {
+        if (!$this->checkTime($value)) {
             throw new ValidatorException('Der Inhalt ist keine gültige Uhrzeit (hh:mm).');
         }
-        if(!$this->checkTime($this->compareTo)) {
+        if (!$this->checkTime($this->compareTo)) {
             throw new Exception('comparator time is invalid');
         }
 
-        if($value == '') {
+        if ($value == '') {
             return $value;
         }
 
-        switch($this->operator) {
+        switch ($this->operator) {
             case CompareEnum::NO_COMPARE:
                 break;
 
             case CompareEnum::GREATER_THAN:
-                if(intval(str_replace(':', '', $value)) <= intval(str_replace(':', '', $this->compareTo))) {
+                if (intval(str_replace(':', '', $value)) <= intval(str_replace(':', '', $this->compareTo))) {
                     throw new ValidatorException($this->replaceIn('Die Uhrzeit muss größer als {TIME} Uhr sein', ['TIME' => $this->compareTo]));
                 }
                 break;
 
             case CompareEnum::LESS_THAN:
-                if(intval(str_replace(':', '', $value)) > intval(str_replace(':', '', $this->compareTo))) {
+                if (intval(str_replace(':', '', $value)) > intval(str_replace(':', '', $this->compareTo))) {
                     throw new ValidatorException($this->replaceIn('Die Uhrzeit muss kleiner als {TIME} Uhr sein', ['TIME' => $this->compareTo]));
                 }
                 break;
 
             case CompareEnum::GREATER_EQUAL_THAN:
-                if(intval(str_replace(':', '', $value)) < intval(str_replace(':', '', $this->compareTo))) {
+                if (intval(str_replace(':', '', $value)) < intval(str_replace(':', '', $this->compareTo))) {
                     throw new ValidatorException($this->replaceIn('Die Uhrzeit muss größer gleich als {TIME} Uhr sein', ['TIME' => $this->compareTo]));
                 }
                 break;
 
             case CompareEnum::LESS_EQUAL_THAN:
-                if(intval(str_replace(':', '', $value)) >= intval(str_replace(':', '', $this->compareTo))) {
+                if (intval(str_replace(':', '', $value)) >= intval(str_replace(':', '', $this->compareTo))) {
                     throw new ValidatorException($this->replaceIn('Die Uhrzeit muss kleiner gleich als {TIME} Uhr sein', ['TIME' => $this->compareTo]));
                 }
                 break;
@@ -89,28 +90,29 @@ class IsTime extends ValidatorRuleNotNullable
         return $value;
     }
 
-    protected function checkTime(string &$value): bool {
+    protected function checkTime(string &$value): bool
+    {
         $value = trim($value);
-        if($value == '') {
+        if ($value == '') {
             return true;
         }
 
-        if(!preg_match(self::REGEX_TIME, $value)) {
+        if (!preg_match(self::REGEX_TIME, $value)) {
             return false;
         }
 
         $frc = explode(':', $value);
 
-        if(intval($frc[0]) < 0 || intval($frc[0]) > 23 || intval($frc[1]) < 0 || intval($frc[1]) > 59) {
+        if (intval($frc[0]) < 0 || intval($frc[0]) > 23 || intval($frc[1]) < 0 || intval($frc[1]) > 59) {
             return false;
         }
         $rv = '';
-        if(strlen($frc[0]) == 1) {
+        if (strlen($frc[0]) == 1) {
             $rv = '0';
         }
         $rv .= $frc[0] . ':';
 
-        if(strlen($frc[1]) == 1) {
+        if (strlen($frc[1]) == 1) {
             $rv .= '0';
         }
         $value = $rv . $frc[1];
