@@ -29,12 +29,12 @@ use SFW2\Validator\Enumerations\ProtocolTypeEnum;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsUrl extends ValidatorRuleNotNullable {
-
-    protected ProtocolTypeEnum $shema;
-
-    public function __construct(ProtocolTypeEnum $shema = ProtocolTypeEnum::NOT_SPECIFIED) {
-        $this->shema = $shema;
+final class IsUrl extends ValidatorRuleNotNullable
+{
+    public function __construct(
+        private readonly ProtocolTypeEnum $shema = ProtocolTypeEnum::NOT_SPECIFIED
+    )
+    {
     }
 
     /**

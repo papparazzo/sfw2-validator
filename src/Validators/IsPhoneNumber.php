@@ -27,7 +27,7 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsPhoneNumber extends ValidatorRuleNotNullable
+final class IsPhoneNumber extends ValidatorRuleNotNullable
 {
     protected const REGEX_PHONE = '#^\(?(\+|00|0)?[1-9]?[0-9 ]{1,9}([/)])?[0-9 \-]+$#';
 

@@ -27,7 +27,7 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsNumeric extends ValidatorRuleNotNullable
+final class IsNumeric extends ValidatorRuleNotNullable
 {
     protected const REGEX_NUMERIC = '#^[0-9\-]+$#';
 

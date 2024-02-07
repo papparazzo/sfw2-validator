@@ -27,7 +27,7 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsSameAs extends ValidatorRuleNotNullable
+final class IsSameAs extends ValidatorRuleNotNullable
 {
 
     protected string $value;

@@ -27,12 +27,12 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsOneOf extends ValidatorRuleNotNullable {
-
-    protected array $elements = [];
-
-    public function __construct(array $elements) {
-        $this->elements = $elements;
+final class IsOneOf extends ValidatorRuleNotNullable
+{
+    public function __construct(
+        private readonly array $elements
+    )
+    {
     }
 
     /**

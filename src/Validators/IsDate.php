@@ -29,14 +29,13 @@ use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\Enumerations\DateCompareEnum;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsDate extends ValidatorRuleNotNullable {
-
-    protected DateCompareEnum $operator;
-    protected string $compareTo;
-
-    public function __construct(DateCompareEnum $operator = DateCompareEnum::NO_COMPARE, string $compareTo = '') {
-        $this->operator = $operator;
-        $this->compareTo = $compareTo;
+final class IsDate extends ValidatorRuleNotNullable
+{
+    public function __construct(
+        private readonly DateCompareEnum $operator = DateCompareEnum::NO_COMPARE,
+        private readonly string $compareTo = ''
+    )
+    {
     }
 
     /**

@@ -28,8 +28,8 @@ use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-class IsEMailAddress extends ValidatorRuleNotNullable {
-
+final class IsEMailAddress extends ValidatorRuleNotNullable
+{
     /**
      * @throws ValidatorException
      */
