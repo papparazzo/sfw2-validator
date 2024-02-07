@@ -34,12 +34,11 @@ final class IsTime extends ValidatorRuleNotNullable
 
     protected const REGEX_TIME = '#^[0-2]?[0-9]:[0-5]?[0-9]$#';
 
-    protected CompareEnum $operator;
-    protected string $compareTo;
-
-    public function __construct(CompareEnum $operator = CompareEnum::NO_COMPARE, string $compareTo = '') {
-        $this->operator = $operator;
-        $this->compareTo = $compareTo;
+    public function __construct(
+        private readonly CompareEnum $operator = CompareEnum::NO_COMPARE,
+        private readonly string $compareTo = ''
+    )
+    {
     }
 
     /**

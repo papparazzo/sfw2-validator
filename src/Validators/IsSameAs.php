@@ -29,14 +29,11 @@ use SFW2\Validator\ValidatorRuleNotNullable;
 
 final class IsSameAs extends ValidatorRuleNotNullable
 {
-
-    protected string $value;
-
-    protected bool $trim;
-
-    public function __construct(string $value, bool $trim = true) {
-        $this->trim = $trim;
-        $this->value = $value;
+    public function __construct(
+        private readonly string $value,
+        private readonly bool $trim = true
+    )
+    {
     }
 
     /**
