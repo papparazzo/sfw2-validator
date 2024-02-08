@@ -1,0 +1,78 @@
+<?php
+
+/**
+ *  SFW2 - SimpleFrameWork
+ *
+ *  Copyright (C) 2024  Stefan Paproth
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program. If not, see <http://www.gnu.org/licenses/agpl.txt>.
+ *
+ */
+
+declare(strict_types=1);
+
+namespace unit\Validators;
+
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+use SFW2\Validator\Exception;
+use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\Validators\ContainsNumbers;
+
+class ContainsNumbersTest extends TestCase
+{
+    /**
+     * @throws Exception
+     */
+    #[DataProvider('getStringDataprovider')]
+    public function testValidValues(int $min, string $value): void
+    {
+        $rule = new ContainsNumbers($min);
+        self::assertEquals($value, $rule->validate($value));
+    }
+
+    public static function getStringDataprovider(): array
+    {
+        return [
+            [3, '123'],
+            [1, '2aa'],
+            [0, 'aaa'],
+            [0, 'A'],
+            [0, ''],
+            [1, '8'],
+            [1, '8A'],
+            [1, 'A9'],
+        ];
+    }
+
+    #[DataProvider('getInvalidStringDataprovider')]
+    public function testInvalidValues(int $min, string $value): void
+    {
+        $this->expectException(ValidatorException::class);
+        $rule = new ContainsNumbers($min);
+        $rule->validate($value);
+    }
+
+    public static function getInvalidStringDataprovider(): array
+    {
+        return [
+            [4, '123'],
+            [1, 'A'],
+            [1, ''],
+            [2, '1'],
+            [2, '1A'],
+            [2, 'A1'],
+        ];
+    }
+}
