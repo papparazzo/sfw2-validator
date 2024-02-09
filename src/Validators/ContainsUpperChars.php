@@ -29,7 +29,9 @@ use SFW2\Validator\ValidatorRuleNotNullable;
 
 final class ContainsUpperChars extends ValidatorRuleNotNullable
 {
-    public function __construct(private readonly int $min = 1)
+    public function __construct(
+        private readonly int $min = 1
+    )
     {
     }
 
