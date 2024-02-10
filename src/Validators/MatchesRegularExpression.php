@@ -24,7 +24,26 @@ declare(strict_types=1);
 
 namespace SFW2\Validator\Validators;
 
-class MatchesRegularExpression
-{
+use SFW2\Validator\Exception as ValidatorException;
+use SFW2\Validator\ValidatorRuleNotNullable;
 
+final class MatchesRegularExpression extends ValidatorRuleNotNullable
+{
+    public function __construct(
+        private readonly string $regex,
+        private readonly string $hint = "Der Inhalt wird nicht von {REGEX} abgedeckt."
+    )
+    {
+    }
+
+    /**
+     * @throws ValidatorException
+     */
+    public function validate(string $value): string
+    {
+        if (!preg_match("#$this->regex#", $value)) {
+            throw new ValidatorException($this->replaceIn( $this->hint, ['REGEX' => $this->regex]));
+        }
+        return $value;
+    }
 }
