@@ -24,19 +24,21 @@ namespace SFW2\Validator;
 
 use SFW2\Validator\Exception as ValidatorException;
 
-class Validator {
+class Validator
+{
 
     protected Ruleset $rulesets;
 
-    public function __construct(Ruleset $ruleset) {
+    public function __construct(Ruleset $ruleset)
+    {
         $this->rulesets = $ruleset;
     }
 
     public function validate(array $input, array &$output): bool {
         $hasErrors = false;
         $output = [];
-        foreach($this->rulesets->getRules() as $field => $rulesets) {
-            if($this->validateElement($field, $rulesets, $input, $output)) {
+        foreach ($this->rulesets->getRules() as $field => $rulesets) {
+            if ($this->validateElement($field, $rulesets, $input, $output)) {
                 $hasErrors = true;
             }
         }
@@ -46,16 +48,16 @@ class Validator {
     protected function validateElement(string $field, array $rulesets, array $input, array &$output): bool {
         $output[$field]['value'] = null;
 
-        if(isset($input[$field])) {
+        if (isset($input[$field])) {
             $output[$field]['value'] = $input[$field];
         }
 
         try {
-            foreach($rulesets as $ruleset) {
+            foreach ($rulesets as $ruleset) {
                 $output[$field]['hint'] = '';
                 $output[$field]['value'] = $ruleset->validateNullable($output[$field]['value']);
             }
-        } catch(ValidatorException $ex) {
+        } catch (ValidatorException $ex) {
             $output[$field]['hint'] = $ex->getMessage();
             return true;
         }

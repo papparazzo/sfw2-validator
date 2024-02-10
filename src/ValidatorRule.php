@@ -22,11 +22,22 @@
 
 namespace SFW2\Validator;
 
-abstract class ValidatorRule {
+use SFW2\Validator\Exception as ValidatorException;
 
+abstract class ValidatorRule
+{
+     /**
+     * @throws ValidatorException
+     */
     abstract public function validateNullable(?string $value): string;
 
-    protected function replaceIn(string $key, $params = []): string {
+    /**
+     * @param string $key
+     * @param array<string, mixed> $params
+     * @return string
+     */
+    protected function replaceIn(string $key, array $params = []): string
+    {
         if (empty($params)) {
             return $key;
         }
