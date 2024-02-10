@@ -24,14 +24,22 @@ declare(strict_types=1);
 
 namespace SFW2\Validator;
 
+use SFW2\Validator\Exception as ValidatorException;
+
 abstract class ValidatorRuleNotNullable extends ValidatorRule
 {
 
+    /**
+     * @throws ValidatorException
+     */
     public function validateNullable(?string $value): string
     {
         $value ??= '';
         return $this->validate($value);
     }
 
+    /**
+     * @throws ValidatorException
+     */
     abstract function validate(string $value): string;
 }
