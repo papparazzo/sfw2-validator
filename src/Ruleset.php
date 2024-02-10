@@ -22,8 +22,11 @@
 
 namespace SFW2\Validator;
 
-class Ruleset {
-
+class Ruleset
+{
+    /**
+     * @var array<string, ValidatorRule[]>
+     */
     private array $rules = [];
 
     public function addNewRules(string $element, ValidatorRule ...$rules): void {
@@ -32,7 +35,11 @@ class Ruleset {
         }
     }
 
-    public function getRules(): array {
+    /**
+     * @return array<string, ValidatorRule[]>
+     */
+    public function getRules(): array
+    {
         return $this->rules;
     }
 }
