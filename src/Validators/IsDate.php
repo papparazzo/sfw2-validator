@@ -124,6 +124,6 @@ final class IsDate extends ValidatorRuleNotNullable
      */
     protected function formatDate(string $value): string
     {
-        return date("d.m.Y", strtotime($value));
+        return date("d.m.Y", (int)strtotime($value));
     }
 }

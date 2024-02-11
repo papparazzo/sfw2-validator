@@ -40,7 +40,7 @@ class ContainsNumbers extends ValidatorRuleNotNullable
      */
     public function validate(string $value): string
     {
-        if (mb_strlen(preg_replace('#[^0-9]+#', '', $value)) < $this->min) {
+        if (mb_strlen((string)preg_replace('#[^0-9]+#', '', $value)) < $this->min) {
             throw new ValidatorException(
                 $this->replaceIn(
                     "Der Inhalt muss mindestens {MIN} {NUMBERS} enthalten.",

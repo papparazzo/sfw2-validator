@@ -40,7 +40,7 @@ final class ContainsLowerChars extends ValidatorRuleNotNullable
      */
     public function validate(string $value): string
     {
-        if (mb_strlen(preg_replace('#[^[:lower:]]+#', '', $value)) < $this->min) { // FIXME: I18N!
+        if (mb_strlen((string)preg_replace('#[^[:lower:]]+#', '', $value)) < $this->min) { // FIXME: I18N!
             throw new ValidatorException($this->replaceIn("Der Inhalt muss mindestens {MIN} Kleinbuchstaben enthalten.", ['MIN' => $this->min]));
         }
         return $value;
