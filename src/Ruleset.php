@@ -29,7 +29,8 @@ class Ruleset
      */
     private array $rules = [];
 
-    public function addNewRules(string $element, ValidatorRule ...$rules): void {
+    public function addNewRules(string $element, ValidatorRule ...$rules): void
+    {
         foreach ($rules as $rule) {
             $this->rules[$element][] = $rule;
         }
