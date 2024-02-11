@@ -29,6 +29,9 @@ use SFW2\Validator\ValidatorRuleNotNullable;
 
 final class IsOneOf extends ValidatorRuleNotNullable
 {
+    /**
+     * @param string[] $elements
+     */
     public function __construct(
         private readonly array $elements
     )
