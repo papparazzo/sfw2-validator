@@ -28,7 +28,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Exception;
 use SFW2\Validator\Exception as ValidatorException;
-use SFW2\Validator\Test\IsBoolTest;
 use SFW2\Validator\Validators\ContainsLowerChars;
 
 class ContainsLowerCharsTest extends TestCase
