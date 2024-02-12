@@ -36,7 +36,7 @@ final class IsTime extends ValidatorRuleNotNullable
 
     public function __construct(
         private readonly CompareEnum $operator = CompareEnum::NO_COMPARE,
-        private readonly string $compareTo = ''
+        private string $compareTo = ''
     )
     {
     }

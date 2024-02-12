@@ -33,7 +33,7 @@ final class IsDate extends ValidatorRuleNotNullable
 {
     public function __construct(
         private readonly DateCompareEnum $operator = DateCompareEnum::NO_COMPARE,
-        private readonly string $compareTo = ''
+        private string $compareTo = ''
     )
     {
     }
