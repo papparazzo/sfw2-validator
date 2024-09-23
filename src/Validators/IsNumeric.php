@@ -27,10 +27,8 @@ namespace SFW2\Validator\Validators;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
-final class IsNumeric extends ValidatorRuleNotNullable
+class IsNumeric extends ValidatorRuleNotNullable
 {
-    protected const REGEX_NUMERIC = '#^[0-9\-]+$#';
-
     /**
      * @throws ValidatorException
      */
@@ -40,7 +38,8 @@ final class IsNumeric extends ValidatorRuleNotNullable
         if ($value == '') {
             return $value;
         }
-        if (!preg_match(self::REGEX_NUMERIC, $value)) {
+
+        if (!is_numeric($value)) {
             throw new ValidatorException('Der Inhalt muss numerisch sein.');
         }
         return $value;
