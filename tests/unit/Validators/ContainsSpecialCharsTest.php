@@ -22,7 +22,7 @@
 
 declare(strict_types=1);
 
-namespace unit\Validators;
+namespace SFW2\Validator\Test\Validators;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

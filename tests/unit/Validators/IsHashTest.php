@@ -20,31 +20,53 @@
  *
  */
 
-namespace SFW2\Validator\Test;
+namespace SFW2\Validator\Test\Validators;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Exception as ValidatorException;
-use SFW2\Validator\Validators\IsAvailable;
+use SFW2\Validator\Validators\IsHash;
 
-final class IsAvailableTest extends TestCase
+final class IsHashTest extends TestCase
 {
-
-    public function testValidateNullValue(): void
+    #[DataProvider('getInvalidHashes')]
+    public function testInvalidHash(string $value): void
     {
         $this->expectException(ValidatorException::class);
 
-        $rule = new IsAvailable();
-        $rule->validate(null);
+        $rule = new IsHash();
+        $rule->validate($value);
+    }
+
+
+    public static function getInvalidHashes(): array
+    {
+        return [
+            ['<'],
+            ['zu'],
+            ['1qw'],
+            ['a bc']
+        ];
     }
 
     /**
      * @throws ValidatorException
      */
-    public function testValidateNonNullValues(): void
+    #[DataProvider('getValidHashes')]
+    public function testValidHash(string $value): void
     {
-        $rule = new IsAvailable();
-        self::assertEquals('', $rule->validate(''));
-        self::assertEquals(' Hal.o ', $rule->validate(' Hal.o '));
+        $rule = new IsHash();
+        self::assertEquals($value, $rule->validate($value));
     }
 
+    public static function getValidHashes(): array
+    {
+        return [
+            ['1'],
+            ['abcdef'],
+            ['ABCDEF'],
+            ['1234567890ABCDEF'],
+            ['5d41402abc4b2a76b9719d911017c592']
+        ];
+    }
 }

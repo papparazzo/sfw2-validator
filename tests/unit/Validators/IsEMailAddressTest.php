@@ -20,47 +20,51 @@
  *
  */
 
+namespace SFW2\Validator\Test\Validators;
 
-namespace SFW2\Validator\Test;
-
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Exception as ValidatorException;
-use SFW2\Validator\Validators\IsOneOf;
+use SFW2\Validator\Validators\IsEMailAddress;
 
-final class IsOneOfTest extends TestCase
+final class IsEMailAddressTest extends TestCase
 {
-
-    public function testValidateEmpty(): void
+    #[DataProvider('getInvalidEmailAddresses')]
+    public function testInvalidEMailAddresses(string $value): void
     {
         $this->expectException(ValidatorException::class);
 
-        $rule = new IsOneOf([]);
-        $rule->validate('Hallo');
+        $rule = new IsEMailAddress();
+        $rule->validate($value);
     }
 
-    public function testValidateNotExist(): void
+    public static function getInvalidEmailAddresses(): array
     {
-        $this->expectException(ValidatorException::class);
-
-        $rule = new IsOneOf(['a', 'b', 'c']);
-        $rule->validate('d');
+        return [
+            ['abc'],
+            ['abc@aasdf@asdf']
+        ];
     }
 
     /**
      * @throws ValidatorException
      */
-    public function testValidateRightValue(): void
+    #[DataProvider('getValidEmailAddresses')]
+    public function testValidEMailAdresses(string $value): void
     {
-        $rule = new IsOneOf(['a', 'b', 'c']);
-        self::assertEquals('a', $rule->validate('a'));
+        $rule = new IsEMailAddress();
+        self::assertEquals(trim($value), $rule->validate($value));
     }
 
-    /**
-     * @throws ValidatorException
-     */
-    public function testValidateRightValue1(): void
+    public static function getValidEmailAddresses(): array
     {
-        $rule = new IsOneOf(['a', '', 'c']);
-        self::assertEquals('', $rule->validate(''));
+        return [
+            ['a@bc.de'],
+            [' a@bc.de'],
+            ['a@bc.de '],
+            [' a@bc.de '],
+            ['']
+        ];
     }
 }
+

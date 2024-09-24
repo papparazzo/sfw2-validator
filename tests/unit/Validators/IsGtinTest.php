@@ -1,9 +1,9 @@
 <?php
 
-/*
- *  Project:    sfw2-validator
+/**
+ *  SFW2 - SimpleFrameWork
  *
- *  Copyright (C) 2020 Stefan Paproth <pappi-@gmx.de>
+ *  Copyright (C) 2024  Stefan Paproth
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
@@ -20,53 +20,54 @@
  *
  */
 
-namespace SFW2\Validator\Test;
+declare(strict_types=1);
+
+namespace SFW2\Validator\Test\Validators;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Exception as ValidatorException;
-use SFW2\Validator\Validators\IsHash;
+use SFW2\Validator\Validators\IsGtin;
 
-final class IsHashTest extends TestCase
+class IsGtinTest extends TestCase
 {
-    #[DataProvider('getInvalidHashes')]
-    public function testInvalidHash(string $value): void
+    #[DataProvider('getInvalidGtin')]
+    public function testInvalidGtin(string $value): void
     {
         $this->expectException(ValidatorException::class);
 
-        $rule = new IsHash();
+        $rule = new IsGtin();
         $rule->validate($value);
     }
 
-
-    public static function getInvalidHashes(): array
+    public static function getInvalidGtin(): array
     {
         return [
-            ['<'],
-            ['zu'],
-            ['1qw'],
-            ['a bc']
+            ['0'],
+            ['111111111111'],
+            ['1111111111111'],
+            ['11111111111111']
         ];
     }
 
     /**
      * @throws ValidatorException
      */
-    #[DataProvider('getValidHashes')]
-    public function testValidHash(string $value): void
+    #[DataProvider('getValidGtin')]
+    public function testValidGtin(string $value): void
     {
-        $rule = new IsHash();
+        $rule = new IsGtin();
         self::assertEquals($value, $rule->validate($value));
     }
 
-    public static function getValidHashes(): array
+    public static function getValidGtin(): array
     {
         return [
-            ['1'],
-            ['abcdef'],
-            ['ABCDEF'],
-            ['1234567890ABCDEF'],
-            ['5d41402abc4b2a76b9719d911017c592']
+            [''],
+            ['4001883445007'],
+            ['4001883965130'],
+            ['4066600345251'],
+            ['4311501548318']
         ];
     }
 }

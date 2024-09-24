@@ -20,7 +20,7 @@
  *
  */
 
-namespace SFW2\Validator\Test;
+namespace SFW2\Validator\Test\Validators;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

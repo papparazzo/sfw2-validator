@@ -20,51 +20,31 @@
  *
  */
 
-namespace SFW2\Validator\Test;
+namespace SFW2\Validator\Test\Validators;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SFW2\Validator\Exception as ValidatorException;
-use SFW2\Validator\Validators\IsEMailAddress;
+use SFW2\Validator\Validators\IsAvailable;
 
-final class IsEMailAddressTest extends TestCase
+final class IsAvailableTest extends TestCase
 {
-    #[DataProvider('getInvalidEmailAddresses')]
-    public function testInvalidEMailAddresses(string $value): void
+
+    public function testValidateNullValue(): void
     {
         $this->expectException(ValidatorException::class);
 
-        $rule = new IsEMailAddress();
-        $rule->validate($value);
-    }
-
-    public static function getInvalidEmailAddresses(): array
-    {
-        return [
-            ['abc'],
-            ['abc@aasdf@asdf']
-        ];
+        $rule = new IsAvailable();
+        $rule->validate(null);
     }
 
     /**
      * @throws ValidatorException
      */
-    #[DataProvider('getValidEmailAddresses')]
-    public function testValidEMailAdresses(string $value): void
+    public function testValidateNonNullValues(): void
     {
-        $rule = new IsEMailAddress();
-        self::assertEquals(trim($value), $rule->validate($value));
+        $rule = new IsAvailable();
+        self::assertEquals('', $rule->validate(''));
+        self::assertEquals(' Hal.o ', $rule->validate(' Hal.o '));
     }
 
-    public static function getValidEmailAddresses(): array
-    {
-        return [
-            ['a@bc.de'],
-            [' a@bc.de'],
-            ['a@bc.de '],
-            [' a@bc.de '],
-            ['']
-        ];
-    }
 }
-
