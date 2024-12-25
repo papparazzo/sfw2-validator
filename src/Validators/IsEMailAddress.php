@@ -24,7 +24,6 @@ declare(strict_types=1);
 
 namespace SFW2\Validator\Validators;
 
-use SFW2\Validator\ValidatorRule;
 use SFW2\Validator\Exception as ValidatorException;
 use SFW2\Validator\ValidatorRuleNotNullable;
 
