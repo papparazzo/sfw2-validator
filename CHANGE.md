@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [7.0.0] - 2024-25-12
+#### Changed 
+- "MatchesRegularExpression" now needs whole pattern
+
+
 ### [6.3.0] - 2024-24-09
 #### Added
 - New validators added (less, greater, isInt)
@@ -31,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Changed
 - PHP 7.4 -> PHP 8.1
+
 
 ### [4.1.0] - 2020-06-17
 #### Changed
