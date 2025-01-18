@@ -1,9 +1,15 @@
 {
     "name": "sfw2/validator",
     "type": "library",
-    "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3",
+    "license": "AGPL-3.0-or-later",
     "description": "simple validation library",
-
+    "keywords": ["sfw2", "micro-framework"],
+    "authors": [
+        {
+            "name": "Stefan Paproth",
+            "email": "pappi-@gmx.de"
+        }
+    ],
     "require": {
         "php": "^8.2",
 
