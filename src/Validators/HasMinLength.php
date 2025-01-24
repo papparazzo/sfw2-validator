@@ -32,8 +32,7 @@ final class HasMinLength extends ValidatorRuleNotNullable
     public function __construct(
         private readonly int $min,
         private readonly bool $trim = true
-    )
-    {
+    ) {
     }
 
     /**

@@ -32,8 +32,7 @@ final class HasMaxLength extends ValidatorRuleNotNullable
     public function __construct(
         private readonly int $max,
         private readonly bool $trim = true
-    )
-    {
+    ) {
     }
 
     /**
