@@ -31,8 +31,7 @@ final class IsNotEmpty extends ValidatorRuleNotNullable
 {
     public function __construct(
         private readonly bool $trim = true
-    )
-    {
+    ) {
     }
 
     /**

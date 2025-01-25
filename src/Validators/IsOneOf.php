@@ -34,8 +34,7 @@ final class IsOneOf extends ValidatorRuleNotNullable
      */
     public function __construct(
         private readonly array $elements
-    )
-    {
+    ) {
     }
 
     /**
