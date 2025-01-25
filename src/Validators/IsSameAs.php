@@ -32,8 +32,7 @@ final class IsSameAs extends ValidatorRuleNotNullable
     public function __construct(
         private readonly string $value,
         private readonly bool $trim = true
-    )
-    {
+    ) {
     }
 
     /**
