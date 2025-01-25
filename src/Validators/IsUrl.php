@@ -33,8 +33,7 @@ final class IsUrl extends ValidatorRuleNotNullable
 {
     public function __construct(
         private readonly ProtocolTypeEnum $shema = ProtocolTypeEnum::NOT_SPECIFIED
-    )
-    {
+    ) {
     }
 
     /**

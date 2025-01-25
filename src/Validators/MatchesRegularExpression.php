@@ -17,7 +17,6 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program. If not, see <http://www.gnu.org/licenses/agpl.txt>.
- *
  */
 
 declare(strict_types=1);
@@ -41,7 +40,7 @@ final class MatchesRegularExpression extends ValidatorRuleNotNullable
     public function validate(string $value): string
     {
         if (!preg_match("$this->regex", $value)) {
-            throw new ValidatorException($this->replaceIn( $this->hint, ['REGEX' => $this->regex]));
+            throw new ValidatorException($this->replaceIn($this->hint, ['REGEX' => $this->regex]));
         }
         return $value;
     }
