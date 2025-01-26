@@ -27,13 +27,13 @@ use SFW2\Validator\Exception as ValidatorException;
 abstract class ValidatorRule
 {
      /**
-     * @throws ValidatorException
-     */
+      * @throws ValidatorException
+      */
     abstract public function validateNullable(?string $value): string;
 
     /**
-     * @param string $key
-     * @param array<string, mixed> $params
+     * @param  string               $key
+     * @param  array<string, mixed> $params
      * @return string
      */
     protected function replaceIn(string $key, array $params = []): string

@@ -22,7 +22,8 @@
 
 namespace SFW2\Validator\Enumerations;
 
-enum ProtocolTypeEnum {
+enum ProtocolTypeEnum
+{
     case NOT_SPECIFIED;
     case WITH_HTTPS;
     case WITH_HTTP;
