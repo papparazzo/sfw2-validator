@@ -35,8 +35,8 @@ class Validator
     }
 
     /**
-     * @param  array<string, string>                             $input
-     * @param  array<string, array{hint: string, value: string}> $output
+     * @param  array<string, string>                              $input
+     * @param  array<string, array{hint: string, value: ?string}> $output
      * @return bool
      */
     public function validate(array $input, array &$output): bool
@@ -52,10 +52,10 @@ class Validator
     }
 
     /**
-     * @param  string                                            $field
-     * @param  ValidatorRule[]                                   $rulesets
-     * @param  array<string, string>                             $input
-     * @param  array<string, array{hint: string, value: string}> $output
+     * @param  string                                             $field
+     * @param  ValidatorRule[]                                    $rulesets
+     * @param  array<string, string>                              $input
+     * @param  array<string, array{hint: string, value: ?string}> $output
      * @return bool
      */
     protected function validateElement(string $field, array $rulesets, array $input, array &$output): bool

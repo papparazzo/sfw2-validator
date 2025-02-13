@@ -44,7 +44,12 @@ class HasLength extends ValidatorRuleNotNullable
         }
 
         if (mb_strlen($value) !== $this->length) {
-            throw new ValidatorException($this->replaceIn("Der Inhalt muss exakt {MAX} Zeichen lang sein.", ['MAX' => $this->length]));
+            throw new ValidatorException(
+                $this->replaceIn(
+                    "Der Inhalt muss exakt {MAX} Zeichen lang sein.",
+                    ['MAX' => (string)$this->length]
+                )
+            );
         }
         return $value;
     }

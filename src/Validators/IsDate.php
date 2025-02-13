@@ -103,6 +103,7 @@ final class IsDate extends ValidatorRuleNotNullable
             return true;
         }
 
+        /** @var array<string, string> $result */
         $result = date_parse($value);
 
         if ($result['month'] < 10) {

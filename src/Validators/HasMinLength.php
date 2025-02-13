@@ -45,7 +45,12 @@ final class HasMinLength extends ValidatorRuleNotNullable
         }
 
         if (mb_strlen($value) < $this->min) {
-            throw new ValidatorException($this->replaceIn("Der Inhalt muss mindestens {MIN} Zeichen lang sein.", ['MIN' => $this->min]));
+            throw new ValidatorException(
+                $this->replaceIn(
+                    "Der Inhalt muss mindestens {MIN} Zeichen lang sein.",
+                    ['MIN' => (string)$this->min]
+                )
+            );
         }
         return $value;
     }

@@ -43,7 +43,7 @@ class ContainsNumbers extends ValidatorRuleNotNullable
                 $this->replaceIn(
                     "Der Inhalt muss mindestens {MIN} {NUMBERS} enthalten.",
                     [
-                        'MIN' => $this->min,
+                        'MIN' => (string)$this->min,
                         'NUMBERS' => $this->min == 1 ? 'Zahl': 'Zahlen'
                     ]
                 )

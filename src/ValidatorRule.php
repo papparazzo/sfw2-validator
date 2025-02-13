@@ -32,8 +32,8 @@ abstract class ValidatorRule
     abstract public function validateNullable(?string $value): string;
 
     /**
-     * @param  string               $key
-     * @param  array<string, mixed> $params
+     * @param  string                $key
+     * @param  array<string, string> $params
      * @return string
      */
     protected function replaceIn(string $key, array $params = []): string

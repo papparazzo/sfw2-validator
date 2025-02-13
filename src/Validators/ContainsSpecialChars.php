@@ -39,7 +39,12 @@ class ContainsSpecialChars extends ValidatorRuleNotNullable
     public function validate(string $value): string
     {
         if (mb_strlen((string)preg_replace('#[^[:punct:]]+#', '', $value)) < $this->min) {
-            throw new ValidatorException($this->replaceIn("Der Inhalt muss mindestens {MIN} Sonderzeichen enthalten.", ['MIN' => $this->min]));
+            throw new ValidatorException(
+                $this->replaceIn(
+                    "Der Inhalt muss mindestens {MIN} Sonderzeichen enthalten.",
+                    ['MIN' => (string)$this->min]
+                )
+            );
         }
         return $value;
     }

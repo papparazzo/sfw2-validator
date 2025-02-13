@@ -45,7 +45,12 @@ final class HasMaxLength extends ValidatorRuleNotNullable
         }
 
         if (mb_strlen($value) > $this->max) {
-            throw new ValidatorException($this->replaceIn("Der Inhalt darf nicht länger als {MAX} Zeichen sein.", ['MAX' => $this->max]));
+            throw new ValidatorException(
+                $this->replaceIn(
+                    "Der Inhalt darf nicht länger als {MAX} Zeichen sein.",
+                    ['MAX' => (string)$this->max]
+                )
+            );
         }
         return $value;
     }

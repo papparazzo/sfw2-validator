@@ -39,7 +39,12 @@ final class ContainsUpperChars extends ValidatorRuleNotNullable
     public function validate(string $value): string
     {
         if (mb_strlen((string)preg_replace('#[^[:upper:]]+#', '', $value)) < $this->min) { // FIXME: I18N!
-            throw new ValidatorException($this->replaceIn("Der Inhalt muss mindestens {MIN} Großbuchstaben enthalten.", ['MIN' => $this->min]));
+            throw new ValidatorException(
+                $this->replaceIn(
+                    "Der Inhalt muss mindestens {MIN} Großbuchstaben enthalten.",
+                    ['MIN' => (string)$this->min]
+                )
+            );
         }
         return $value;
     }
